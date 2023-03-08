@@ -137,7 +137,7 @@ function tick{
                 execute if score @s fuse_time matches 2 run{
                     setblock ~ ~-1 ~ structure_block[mode=load]{name:"minecraft:building",posX:-13,posY:1,posZ:-10,rotation:"NONE",mirror:"NONE",mode:"LOAD"} replace
                     setblock ~ ~-2 ~ redstone_block
-                    tp @a[distance=..10] ~ ~50 ~
+                    tp @a[distance=..30] ~ ~50 ~
                 }
 
                 # Kill the AS if TNT is exploded
