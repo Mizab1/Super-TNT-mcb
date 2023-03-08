@@ -1,0 +1,44 @@
+- 20 Super TNT 2023 @done
+- Skyscrapper TNT - a skyscraper appears and tp the player at the top @done tested
+- Catapult TNT - summon a catapult and it shoot a rock)? @done tested
+- Nature fall trap TNT - summon carnivore plants from the floor and change the floor blocks by mossy blocks @done tested
+- TV TNT - appears a tv front the player and give him slowness to he can’t scape and force the view to the tv, then add ads at the chat with multiple colors like discount and offers, he will die for being boring to die. @done tested
+- hahaha TNT - summon random mobs, who will see you and laugh bc you lost your pants, and you have to put the pants as item model in the floor or something similar that looks good, so th eplayer will die of shame. @done tested
+- Anime TNT - this will be an inspired tnt in attack tittan anime, where in one scene, titans are raining from the sky in the enemy base and destroy everything, so use retextured giants and drop them from a high height and add exzplosions to the impact and maybe steam particles around. @done tested
+- flowers TNT - summon a lot of flowers around and they will explode if the player touch them @done tested
+- car TNT - a car appears with sounds and it crash into you (with message) @done tested
+- star TNT - star rains and kill you (maybe with particles) @done tested
+- turbo TNT - you drive a lambo and you dont have brakes and if you crash you die @done tested
+- TNT earthquake and brake some random blocks around in a big radious @done tested
+- punch TNT, it charges with punches, so if the player punch it 100 times, it will explode lv 100 @done tested
+- gravity TNT, oscillate between up and down for 30 seconds every 5 seconds @done tested
+- steal TNT, steal random items from the inventory of the player @done tested
+- teleport TNT, tp all the blocks in another random place @done tested
+- void TNT, tp all the players and entities at the void @done tested
+
+---- TODO
+- Make new Custom Model @done
+- Import ./generated into new folder
+ 
+
+- Make sure to tell that to punch the punch tnt just above the block
+- master tag is used to exclude a player. It works currently on void, steal, car, laugh, ads, gravity tnt
+- Move the catapult! Push it forwards by crouching in the back of the catapult, push it backwards by crouching in the front, and rotate it by pushing either side posts of the catapult. Shoot! Simply punch right under the scoop of the catapult to release it. Reload! Throw another obsidian block right into the center of the catapult in order to reload it. kill all the catapult using /function mtnt.main:kill_catapult
+- It is made for 1.19.2
+
+
+
+- Skyscrapper TNT
+- Nature fall trap TNT
+- TV TNT @done
+- laugh TNT @done
+- Anime TNT @done
+- Flowers TNT
+- car TNT
+- star TNT
+- turbo TNT
+- earthquake TNT
+- steal TNT
+- teleport TNT
+- void TNT
+

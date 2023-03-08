@@ -1,0 +1,1561 @@
+import ./macros/wait.mcm
+import ./macros/mob_spawn.mcm
+
+function load{
+    # Make a Dummy scoreboard of Fuse Timer
+    scoreboard objectives add fuse_time dummy
+    gamerule universalAnger true  
+}
+
+# clock 3s{
+#     execute as @e[type=sheep, tag=tnt.sheep] at @s run{
+#         summon tnt ~ ~ ~ {Fuse:0}
+#         function mtnt.main:rainbow_particles
+#     }
+# }
+
+# clock 1s{
+#     # fairy tnt
+#     execute as @e[type=bee, tag=fairy] at @s run{
+#         particle happy_villager ~ ~ ~ 0.3 0.3 0.3 0 3 normal
+#     }
+#     # Fairy tnt regen
+#     execute as @a at @s if entity @e[type=bee, tag=fairy, distance=..6] run{
+#         effect give @s regeneration 2 3
+#     }
+# }
+
+function tick{
+    effect give @a night_vision 100 0 true
+    # noob tnt handler
+    # execute as @a at @s if entity @e[type=giant, distance=..3] run{
+    #     effect give @s instant_damage 1 0 true
+    # }
+    # # Missile
+    # execute as @e[type=armor_stand, tag=missile_as] at @s unless block ~ ~-0.5 ~ air run{
+    #     summon tnt ~ ~ ~ {Fuse:0}
+    #     kill @s
+    # }
+    # # Ice tnt
+    # execute as @e[tag=slowed] at @s run{
+    #     particle block ice ~ ~ ~ 0.3 0.3 0.3 0 2 normal
+    # }
+    # # aswd
+    # execute as @e[type=giant, tag=aswd] at @s run{
+    #     fill ~-5 ~ ~-5 ~5 ~13 ~5 air
+    # }
+    # unspeakable
+    # execute as @a[type=zombie, tag=unspeakable] run data merge entity @s {Fire:0s}
+
+
+    # setblock the custom TNT
+    execute as @e[type=endermite, tag=tnt.endermite] at @s run{
+        #*------ TODO: Change Custom model data
+        #--- all_effect
+        execute if entity @s[tag=skyscraper] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.skyscraper","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100011}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- Nuke
+        execute if entity @s[tag=nuke] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.nuke","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100038}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- fish
+        execute if entity @s[tag=fish] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.fish","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100012}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- missile
+        execute if entity @s[tag=missile] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.missile","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100013}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- sponge
+        execute if entity @s[tag=sponge] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.sponge","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100014}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- butcher
+        execute if entity @s[tag=butcher] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.butcher","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100015}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- rich
+        execute if entity @s[tag=rich] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.rich","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100016}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- unspeakable
+        execute if entity @s[tag=unspeakable] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.unspeakable","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100018}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- lightning
+        execute if entity @s[tag=lightning] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.lightning","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100019}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- hostile
+        execute if entity @s[tag=hostile] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.hostile","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100020}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- recursion
+        execute if entity @s[tag=recursion] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.recursion","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100017}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- noob
+        execute if entity @s[tag=noob] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.noob","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100021}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- drill
+        execute if entity @s[tag=drill] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.drill","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100022}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- tsunami
+        execute if entity @s[tag=tsunami] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.tsunami","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100023}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- wwz
+        execute if entity @s[tag=wwz] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.wwz","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100024}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- inverted
+        execute if entity @s[tag=inverted] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.inverted","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100025}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- secret
+        execute if entity @s[tag=secret] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.secret","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100026}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- hacker
+        execute if entity @s[tag=hacker] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.hacker","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100027}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- noob_2
+        execute if entity @s[tag=noob_2] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.noob_2","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100028}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- farm
+        execute if entity @s[tag=farm] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.farm","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100029}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- ice
+        execute if entity @s[tag=ice] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.ice","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100030}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- fairy
+        execute if entity @s[tag=fairy] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.fairy","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100031}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- troll
+        execute if entity @s[tag=troll] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.troll","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100032}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- all
+        execute if entity @s[tag=all] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.all_effect","tnt.fish","tnt.missile","tnt.sponge","tnt.rich","tnt.lightning","tnt.hostile","tnt.drill","tnt.tsunami","tnt.wwz","tnt.inverted","tnt.farm","tnt.ice","tnt.fairy","tnt.frog", "tnt.fake", "tnt.meteor", "tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100033}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- frog
+        execute if entity @s[tag=frog] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.frog","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100034}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- mutant
+        execute if entity @s[tag=mutant] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.mutant","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100035}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- fake
+        execute if entity @s[tag=fake] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.fake","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100036}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+
+        #--- meteor
+        execute if entity @s[tag=meteor] run{
+            summon armor_stand ~ ~ ~ {NoGravity:1b,Invisible:1b,Tags:["tnt.meteor","tnt.as"],ArmorItems:[{},{},{},{id:"minecraft:endermite_spawn_egg",Count:1b,tag:{CustomModelData:100037}}]}
+            setblock ~ ~ ~ tnt
+            tp @s ~ ~-600 ~
+        }
+    }
+
+    # Tnt validation and explosion handler
+    execute as @e[type=armor_stand, tag=tnt.as] at @s run{
+        #--- all_effect
+        execute if entity @s[tag=tnt.all_effect] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run block{
+                    particle minecraft:entity_effect ~ ~ ~ 1 1 1 1 50
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    effect give @a[distance=..70] regeneration 15 1 true
+                    effect give @a[distance=..70] speed 15 1 true
+                    effect give @a[distance=..70] slowness 15 1 true
+                    effect give @a[distance=..70] haste 15 1 true
+                    effect give @a[distance=..70] mining_fatigue 15 1 true
+                    effect give @a[distance=..70] strength 15 1 true
+                    effect give @a[distance=..70] instant_health 15 1 true
+                    effect give @a[distance=..70] instant_damage 15 1 true
+                    effect give @a[distance=..70] jump_boost 15 1 true
+                    effect give @a[distance=..70] nausea 15 1 true
+                    effect give @a[distance=..70] regeneration 15 1 true
+                    effect give @a[distance=..70] resistance 15 1 true
+                    effect give @a[distance=..70] fire_resistance 15 1 true
+                    effect give @a[distance=..70] water_breathing 15 1 true
+                    effect give @a[distance=..70] invisibility 15 1 true
+                    effect give @a[distance=..70] blindness 5 1 true
+                    effect give @a[distance=..70] night_vision 15 1 true
+                    effect give @a[distance=..70] hunger 15 1 true
+                    effect give @a[distance=..70] weakness 15 1 true
+                    effect give @a[distance=..70] poison 15 1 true
+                    effect give @a[distance=..70] wither 15 1 true
+                    effect give @a[distance=..70] health_boost 15 1 true
+                    effect give @a[distance=..70] absorption 15 1 true
+                    effect give @a[distance=..70] saturation 15 1 true
+                    effect give @a[distance=..70] levitation 15 1 true
+                    effect give @a[distance=..70] conduit_power 15 1 true
+                    effect give @a[distance=..70] slow_falling 15 1 true
+                    effect give @a[distance=..70] poison 15 1 true
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.all_effect,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- Nuke
+        execute if entity @s[tag=tnt.nuke] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle block yellow_wool ~ ~ ~ 1 1 1 0 500 normal
+                    particle block orange_concrete ~ ~ ~ 1 1 1 0 500 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    LOOP(10, i){
+                        summon fireball ~<%Math.cos(i)*2%> ~-0.45 ~<%Math.sin(i)*2%> {ExplosionPower:100,direction:[0.0,-1.0,0.0],power:[0.0,-1.0,0.0]}
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.nuke,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- fish
+        execute if entity @s[tag=tnt.fish] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle block water ~ ~ ~ 1 1 1 1 25
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    LOOP(15, x){
+                        LOOP(15, z){
+                            summon item ~<%-x*2%> ~50 ~<%-z*2%> {Item:{id:"minecraft:cod",Count:1b}}
+                        }   
+                    }
+                    LOOP(15, x){
+                        LOOP(15, z){
+                            summon item ~<%x*2%> ~50 ~<%z*2%> {Item:{id:"minecraft:cod",Count:1b}}
+                        }   
+                    }
+                    LOOP(15, x){
+                        LOOP(15, z){
+                            summon item ~<%-x*2%> ~50 ~<%z*2%> {Item:{id:"minecraft:cod",Count:1b}}
+                        }   
+                    }
+                    LOOP(15, x){
+                        LOOP(15, z){
+                            summon item ~<%x*2%> ~50 ~<%-z*2%> {Item:{id:"minecraft:cod",Count:1b}}
+                        }   
+                    }
+
+                    LOOP(15, x){
+                        LOOP(15, z){
+                            summon item ~<%-x*2%> ~100 ~<%-z*2%> {Item:{id:"minecraft:cod",Count:1b}}
+                        }   
+                    }
+                    LOOP(15, x){
+                        LOOP(15, z){
+                            summon item ~<%x*2%> ~100 ~<%z*2%> {Item:{id:"minecraft:cod",Count:1b}}
+                        }   
+                    }
+                    LOOP(15, x){
+                        LOOP(15, z){
+                            summon item ~<%-x*2%> ~100 ~<%z*2%> {Item:{id:"minecraft:cod",Count:1b}}
+                        }   
+                    }
+                    LOOP(15, x){
+                        LOOP(15, z){
+                            summon item ~<%x*2%> ~100 ~<%-z*2%> {Item:{id:"minecraft:cod",Count:1b}}
+                        }   
+                    }
+                
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.fish,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- missile
+        execute if entity @s[tag=tnt.missile] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle angry_villager ~ ~ ~ 0 1 0 0 10 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    LOOP(25, x){
+                        LOOP(25, z){
+                            execute positioned ~-60 ~ ~-60 run summon armor_stand ~<%x*5%> ~20 ~<%z*5%> {Tags:["missile_as"],Invisible:1b,ArmorItems:[{},{},{},{id:"minecraft:wooden_hoe",Count:1b,tag:{CustomModelData:101011}}]}
+                        }   
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.missile,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- sponge
+        execute if entity @s[tag=tnt.sponge] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle minecraft:block water ~ ~ ~ 1 1 1 0 10 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    fill ~16 ~16 ~16 ~-16 ~-13 ~-16 air replace water
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.sponge,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- butcher
+        execute if entity @s[tag=tnt.butcher] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle dust 0.859 0.188 0.188 1 ~ ~1 ~ 1 1 1 1 50 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    kill @e[type=!player,distance=..100]
+                    particle dust 0.541 0.000 0.000 1 ~ ~ ~ 20 20 20 1 100000 normal
+                    particle dust 0.322 0.000 0.000 1 ~ ~ ~ 20 20 20 1 10000 normal
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.butcher,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- rich
+        execute if entity @s[tag=tnt.rich] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle minecraft:item diamond ~ ~ ~ 1 1 1 0 100
+                    particle minecraft:block diamond_block ~ ~ ~ 1 1 1 0 100
+                    particle minecraft:item emerald ~ ~ ~ 1 1 1 0 100
+                    particle minecraft:block emerald_block ~ ~ ~ 1 1 1 0 100
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    LOOP(25, x){
+                        LOOP(25, z){
+                            execute positioned ~ ~ ~ run summon item ~<%x%> ~50 ~<%z%> {Item:{id:"minecraft:diamond",Count:1b}}
+                            execute positioned ~ ~ ~ run summon item ~<%x%> ~50 ~<%z%> {Item:{id:"minecraft:diamond_block",Count:1b}}
+                        }   
+                    }
+                    LOOP(25, x){
+                        LOOP(25, z){
+                            execute positioned ~ ~ ~ run summon item ~<%-x%> ~50 ~<%-z%> {Item:{id:"minecraft:emerald",Count:1b}}
+                            execute positioned ~ ~ ~ run summon item ~<%-x%> ~50 ~<%-z%> {Item:{id:"minecraft:emerald_block",Count:1b}}
+                        }   
+                    }
+                    LOOP(25, x){
+                        LOOP(25, z){
+                            execute positioned ~ ~ ~ run summon item ~<%-x%> ~50 ~<%z%> {Item:{id:"minecraft:gold_ingot",Count:1b}}
+                            execute positioned ~ ~ ~ run summon item ~<%-x%> ~50 ~<%z%> {Item:{id:"minecraft:gold_block",Count:1b}}
+                        }   
+                    }
+                    LOOP(25, x){
+                        LOOP(25, z){
+                            execute positioned ~ ~ ~ run summon item ~<%x%> ~50 ~<%-z%> {Item:{id:"minecraft:emerald_block",Count:1b}}
+                            execute positioned ~ ~ ~ run summon item ~<%x%> ~50 ~<%-z%> {Item:{id:"minecraft:emerald",Count:1b}}
+                        }   
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.rich,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- unspeakable
+        execute if entity @s[tag=tnt.unspeakable] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle block lime_concrete_powder ~ ~ ~ 1 0 1 1 50 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    particle dust 0.906 0.969 0.027 1 ~ ~1 ~ 1 1 1 1 500 normal
+                    LOOP(40, i){
+                        summon zombie ~ ~ ~ {Tags:["unspeakable"],CustomName:'{"text":"Unspeakable"}',ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.unspeakable,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- lightning
+        execute if entity @s[tag=tnt.lightning] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle cloud ~ ~ ~ 1 1 1 0.3 10 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 4 run{
+                    LOOP(20, i){
+                        summon armor_stand ~ ~ ~ {Tags:["lightning_as"], Marker:1b, Invisible:1b}
+                    }
+                }
+                execute if score @s fuse_time matches 3 run{
+                    spreadplayers ~ ~ 8 20 false @e[type=minecraft:armor_stand,tag=lightning_as]
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run{
+                    execute as @e[type=armor_stand,tag=lightning_as] at @s run summon lightning_bolt ~ ~ ~ 
+                    kill @e[type=armor_stand,tag=tnt.lightning,distance=..4]
+                    kill @e[type=armor_stand,tag=lightning_as]
+                }
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- hostile
+        execute if entity @s[tag=tnt.hostile] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle minecraft:dust 1 0 0 1 ~ ~ ~ 1 1 1 1 50 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    particle minecraft:firework ~ ~1 ~ 1 1 1 0.2 1000 normal
+                    summon zombie ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon husk ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon stray ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}],HandItems:[{id:"minecraft:bow",Count:1b},{}]}
+                    summon skeleton ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}],HandItems:[{id:"minecraft:bow",Count:1b},{}]}
+                    summon pillager ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}],HandItems:[{id:"minecraft:rossbow",Count:1b},{}]}
+                    summon illusioner ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}],HandItems:[{id:"minecraft:bow",Count:1b},{}]}
+                    summon creeper ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon silverfish ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon hoglin ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon magma_cube ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon slime ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon blaze ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon cave_spider ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon spider ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon evoker ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon vindicator ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}],HandItems:[{id:"minecraft:iron_axe",Count:1b},{}]}
+                    summon witch ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon wither_skeleton ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                    summon piglin ~ ~ ~ {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.hostile,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- recursion
+        execute if entity @s[tag=tnt.recursion] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle block yellow_stained_glass ~ ~ ~ 1 0 1 1 200 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    LOOP(10, i){
+                        summon tnt ~<%Math.cos(i)*2%> ~1 ~<%Math.sin(i)*2%> {Fuse:25, Tags:["recursion_tnt_child_2"]}
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.recursion,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- noob
+        execute if entity @s[tag=tnt.noob] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle dust 0.2 0.5 0.5 1 ~ ~ ~ 1 1 1 1 50 normal
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run{
+                    particle firework ~ ~1 ~ 1 1 1 0.5 500 normal
+                    summon giant ~ ~ ~ {Passengers:[{id:"minecraft:zombie",ArmorItems:[{},{},{},{id:"minecraft:leather_helmet",Count:1b}],ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b},{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}],Tags:["aswd"],CustomName:'{"text":"ASWD"}',ActiveEffects:[{Id:11b,Amplifier:5b,Duration:20,ShowParticles:0b}]}
+
+                    kill @e[type=armor_stand,tag=tnt.noob,distance=..4]
+                    kill @e[type=tnt,distance=..0.5]
+
+                }
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- drill
+        execute if entity @s[tag=tnt.drill] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle block stone ~ ~ ~ 0 1 0 1 50 normal
+                    particle block diorite ~ ~ ~ 0 1 0 1 50 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    particle block obsidian ~ ~ ~ 1 1 1 1 50 normal
+                    fill ~2 ~40 ~2 ~-2 ~-40 ~-2 air
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.drill,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- tsunami
+        execute if entity @s[tag=tnt.tsunami] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle block water ~ ~ ~ 1 0.5 1 1 70 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    fill ~16 ~16 ~16 ~-16 ~-13 ~-16 water replace air
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.tsunami,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- wwz
+        execute if entity @s[tag=tnt.wwz] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle soul ~ ~ ~ 1 1 1 0.1 10 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    particle minecraft:explosion ~ ~ ~ 2 2 2 0 50 normal
+                    effect give @a[distance=..70] blindness 6 1 true
+                    LOOP(20, x){
+                        LOOP(20, z){
+                            summon zombie ~<%x*3%> ~20 ~<%z*3%> {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:60,ShowParticles:0b}]}
+                        }
+                    }
+
+                    LOOP(20, x){
+                        LOOP(20, z){
+                            summon zombie ~<%-x*3%> ~20 ~<%-z*3%> {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:60,ShowParticles:0b}]}
+                        }
+                    }
+
+                    LOOP(20, x){
+                        LOOP(20, z){
+                            summon zombie ~<%-x*3%> ~20 ~<%z*3%> {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:60,ShowParticles:0b}]}
+                        }
+                    }
+
+                    LOOP(20, x){
+                        LOOP(20, z){
+                            summon zombie ~<%x*3%> ~20 ~<%-z*3%> {ActiveEffects:[{Id:11b,Amplifier:5b,Duration:60,ShowParticles:0b}]}
+                        }
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.wwz,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- inverted
+        execute if entity @s[tag=tnt.inverted] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle reverse_portal ~ ~1 ~ 1 1 1 0.3 20 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    particle firework ~ ~1 ~ 1 1 1 1 300 normal
+                    execute as @e[distance=..20, type=!player, tag=!aswd] run data merge entity @s {CustomName:'{"text":"Dinnerbone"}'}
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.inverted,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- secret
+        execute if entity @s[tag=tnt.secret] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle minecraft:block light_blue_wool ~ ~ ~ 1 0 1 1 100
+                    particle minecraft:block orange_wool ~ ~ ~ 1 0 1 1 100
+                    particle minecraft:block green_wool ~ ~ ~ 1 0 1 1 100
+                    particle minecraft:block yellow_wool ~ ~ ~ 1 0 1 1 100
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    # replaceitem entity @a[distance=..50] armor.head player_head{display:{Name:'{"text":"You\'re Gay","italic":false}'},SkullOwner:{Id:[I;-236160401,-1846392776,-1703417489,1563058959],Properties:{textures:[{Value:"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTg4MTM3NjRiMmFiYzk0ZWMzYzNiYzY3YjkxNDdjMjFiZTg1MGNkZjk5NjY3OTcwMzE1N2Y0NTU1OTk3ZWE2MyJ9fX0="}]}}} 1
+                    # replaceitem entity @a[distance=..50] armor.chest leather_chestplate{display:{Name:'{"text":"Believe me, you\'re","italic":false}',color:16252675}} 1
+                    # replaceitem entity @a[distance=..50] armor.legs leather_leggings{display:{Name:'{"text":"You can\'t deny it","italic":false}',color:1871615}} 1
+                    # replaceitem entity @a[distance=..50] armor.feet leather_boots{display:{Name:'{"text":"Yes, you\'re","italic":false}',color:16717715}} 1
+
+                    effect give @a[distance=..50] poison 25 0 true
+                    sequence{
+                        tellraw @a[distance=..50] {"text":"Oh no! You came out to be a Gay!!!!!", "color":"green"}
+                        delay 3s
+                        tellraw @a {"text":"Don't worry just the whole world will tease you haha", "color":"green"}
+                        delay 3s
+                        tellraw @a {"text":"Nah jk, the whole world will mock you :O", "color":"green"}
+                        delay 3s
+                        tellraw @a {"text":"How will you survive?", "color":"green"}
+                        delay 3s
+                        tellraw @a {"text":"Don't worry, there's a LGBT club for you", "color":"green"}
+                        delay 3s
+                        tellraw @a {"text":"If you will be a good gay the you can be LGBT+", "color":"green"}
+                        delay 3s
+                        tellraw @a {"text":"Isn't that sounds amazing?", "color":"green"}
+                        delay 3s
+                        tellraw @a {"text":"uhmm... I think you made a big mistake by blowing up this TNT, look at you, look at your cloths", "color":"green"}
+                        delay 3s
+                        tellraw @a {"text":"Its miserable", "color":"green"}
+                        delay 5s
+                        tellraw @a {"text":"NOTE: its just a joke, I don't have a intention to hurt someone by any means","color":"red"}
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.secret,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- hacker
+        execute if entity @s[tag=tnt.hacker] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle block obsidian ~ ~ ~ 1 0.3 1 0.3 20 normal
+                    particle block lime_concrete_powder ~ ~ ~ 1 0.3 1 0.3 20 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    effect give @a blindness 20 1 true
+                    sequence{
+                        delay 1s
+                        title @a title {"text":"Made by Mizab, I don't know what else to write x)","obfuscated":true,"color":"green"}
+                        delay 3s
+                        title @a title {"text":"You PC has been hacked","color":"green"}
+                        delay 4s
+                        title @a title {"text":"Your Game will crash in 3..","color":"green"}
+                        delay 1s
+                        title @a title {"text":"Your Game will crash in 2..","color":"green"}
+                        delay 1s
+                        title @a title {"text":"Your Game will crash in 1..","color":"green"}
+                        delay 1s
+                        title @a title {"text":"You cannont to reclaim your pc muhahahahahahah","obfuscated":true,"color":"green"}
+                        tellraw @a {"text":"You cannont to reclaim your pc muhahahahahahah","obfuscated":true,"color":"green"}
+                        tellraw @a {"text":"You cannont to reclaim your pc muhahahahahahah","obfuscated":true,"color":"green"}
+                        tellraw @a {"text":"You cannont to reclaim your pc muhahahahahahah","obfuscated":true,"color":"green"}
+                        tellraw @a {"text":"You cannont to reclaim your pc muhahahahahahah","obfuscated":true,"color":"green"}
+                        tellraw @a {"text":"You cannont to reclaim your pc muhahahahahahah","obfuscated":true,"color":"green"}
+                        tellraw @a {"text":"You cannont to reclaim your pc muhahahahahahah","obfuscated":true,"color":"green"}
+                        tellraw @a {"text":"You cannont to reclaim your pc muhahahahahahah","obfuscated":true,"color":"green"}
+
+                        LOOP(300, x){
+                            LOOP(300, z){
+                                summon zombie ~<%x*1.5%> ~ ~<%z*1.5%> {Silent:1b} 
+                            }
+                        }
+                        LOOP(300, x){
+                            LOOP(300, z){
+                                summon zombie ~<%-x*1.5%> ~ ~<%-z*1.5%> {Silent:1b} 
+                            }
+                        }
+                        LOOP(300, x){
+                            LOOP(300, z){
+                                summon zombie ~<%-x*1.5%> ~ ~<%z*1.5%> {Silent:1b} 
+                            }
+                        }
+                        LOOP(300, x){
+                            LOOP(300, z){
+                                summon zombie ~<%x*1.5%> ~ ~<%-z*1.5%> {Silent:1b} 
+                            }
+                        }
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run kill @e[type=armor_stand,tag=tnt.hacker,distance=..4]
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- noob_2
+        execute if entity @s[tag=tnt.noob_2] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle dust 1 1 1 2 ~ ~ ~ 0 1 0 0 20 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    particle firework ~ ~ ~ 0 0 0 1 100 normal
+                    tellraw @a {"text":"Not again, Last time I told you this TNT does nothing, its USELESS!!!"}
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run{
+                    kill @e[type=tnt,distance=..1]
+                    kill @e[type=armor_stand,tag=tnt.noob_2,distance=..4]
+                }
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- farm
+        execute if entity @s[tag=tnt.farm] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle block hay_block ~ ~ ~ 1 1 1 0 20 normal
+                    particle item wheat ~ ~ ~ 1 1 1 0 20 normal
+                    particle item carrot ~ ~ ~ 1 1 1 0 20 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    particle firework ~ ~ ~ 0 0 0 1 1000 normal
+                    LOOP(10, i){
+                        summon sheep ~ ~ ~
+                        summon cow ~ ~ ~
+                        summon pig ~ ~ ~
+                        summon chicken ~ ~ ~
+                        summon rabbit ~ ~ ~
+                        summon fox ~ ~ ~
+                        summon ocelot ~ ~ ~
+                        summon horse ~ ~ ~
+                        summon donkey ~ ~ ~
+                        summon mule ~ ~ ~
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run{
+                    kill @e[type=tnt,distance=..1]
+                    kill @e[type=armor_stand,tag=tnt.farm,distance=..4]
+                }
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- ice
+        execute if entity @s[tag=tnt.ice] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle block ice ~ ~ ~ 1 1 1 0 50 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    particle dust 0.549 0.702 1.000 1 ~ ~ ~ 1 1 1 1 100 normal
+                    effect give @e slowness 10 2 true
+                    tag @e add slowed
+                    schedule 10s append{
+                        tag @e remove slowed
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run{
+                    kill @e[type=armor_stand,tag=tnt.ice,distance=..4]
+                }
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- fairy
+        execute if entity @s[tag=tnt.fairy] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle end_rod ~ ~ ~ 1 1 1 0 10 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    particle happy_villager ~ ~ ~ 1 1 1 1 100 normal
+                    LOOP(15, i){
+                        summon bee ~ ~ ~ {Tags:["fairy"],Passengers:[{id:"minecraft:armor_stand",Small:1b,Invisible:1b,ArmorItems:[{},{},{},{id:"minecraft:wooden_hoe",Count:1b,tag:{CustomModelData:101012}}]}],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run{
+                    kill @e[type=tnt,distance=..1]
+                    kill @e[type=armor_stand,tag=tnt.fairy,distance=..4]
+                }
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- troll
+        execute if entity @s[tag=tnt.troll] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle falling_dust obsidian ~ ~1 ~ 1 0 1 1 30 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    fill ~ ~-1 ~ ~32 ~-1 ~32 lava                    
+                    fill ~ ~-1 ~ ~-32 ~-1 ~-32 lava
+                    fill ~ ~-1 ~ ~32 ~-1 ~-32 lava
+                    fill ~ ~-1 ~ ~-32 ~-1 ~32 lava
+
+                    fill ~ ~-1 ~ ~4 ~-1 ~4 sandstone
+                    fill ~ ~-1 ~ ~-4 ~-1 ~-4 sandstone
+                    fill ~ ~-1 ~ ~4 ~-1 ~-4 sandstone
+                    fill ~ ~-1 ~ ~-4 ~-1 ~4 sandstone
+
+                    tp @a[distance=..70] ~ ~ ~
+                    effect give @a[distance=..70] speed 40 100 true
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run{
+                    kill @e[type=tnt,distance=..1]
+                    kill @e[type=armor_stand,tag=tnt.troll,distance=..4]
+                }
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- frog
+        execute if entity @s[tag=tnt.frog] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle block green_wool ~ ~ ~ 1 1 1 1 30 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    particle firework ~ ~ ~ 1 1 1 1 300 normal
+                    LOOP(50, i){
+                        summon frog ~ ~ ~ {DeathLootTable:"minecraft:bat"}
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run{
+                    kill @e[type=tnt,distance=..1]
+                    kill @e[type=armor_stand,tag=tnt.frog,distance=..4]
+                }
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- mutant
+        execute if entity @s[tag=tnt.mutant] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle block redstone_block ~ ~ ~ 1 1 1 1 30 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 2 run{
+                    particle firework ~ ~ ~ 1 1 1 1 300 normal
+                    LOOP(5, i){
+                        miner_zombie ~ ~ ~
+                        builder_zombie ~ ~ ~
+                        magma_zombie ~ ~ ~
+                        fast_zombie ~ ~ ~
+                        strong_zombie ~ ~ ~
+                        brute_zombie ~ ~ ~
+                        mega_brute_zombie ~ ~ ~
+                        end_zombie ~ ~ ~
+                        witch_zombie ~ ~ ~
+                        king_zombie ~ ~ ~
+
+                    }
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run{
+                    kill @e[type=tnt,distance=..1]
+                    kill @e[type=armor_stand,tag=tnt.mutant,distance=..4]
+                }
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- fake
+        execute if entity @s[tag=tnt.fake] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run{
+                    kill @e[type=tnt,distance=..0.5]
+                    kill @s
+                }
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+
+        #--- meteor
+        execute if entity @s[tag=tnt.meteor] run{
+            execute(if entity @e[type=tnt,distance=..0.5]){
+                # Teleport itself to the ignited TNT
+                tp @s @e[type=tnt,distance=..0.5,sort=nearest,limit=1]
+
+                # Use its 'fuse_time' scoreboard to link with 'Fuse' of TNT
+                execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+
+                # Runs a particle effect when ignited
+                execute if score @s fuse_time matches 1..80 run{
+                    particle lava ~ ~ ~ 0 1 0 1 30 normal
+                    particle smoke ~ ~ ~ 0 1 0 0 20 normal
+                }
+                # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
+                execute if score @s fuse_time matches 4 run{
+                    LOOP(15, i){
+                        summon armor_stand ~ ~ ~ {Marker:1b, Invisible:1b, Tags:["meteor_as"]}
+                    }
+                }
+
+                execute if score @s fuse_time matches 2 run{
+                    spreadplayers ~ ~ 8 15 false @e[type=armor_stand, tag=meteor_as]
+                }
+
+                # Kill the AS if TNT is exploded
+                execute if score @s fuse_time matches 1 run{
+                    particle firework ~ ~ ~ 1 1 1 1 300 normal
+                    execute as @e[type=armor_stand, tag=meteor_as] at @s run{
+                        summon fireball ~ ~100 ~ {ExplosionPower:6,direction:[0.0,-0.3,0.0],power:[0.0,-0.3,0.0],Tags:["meteor_fireball"]}
+                    }
+                    kill @e[type=armor_stand,tag=tnt.meteor,distance=..4]
+                    kill @e[type=armor_stand,tag=meteor_as]
+                }
+            }
+            execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
+                # Breaking
+                kill @s
+            }
+        }
+    }
+
+    # Recursion tnt child
+    execute as @e[type=tnt] at @s run{
+        execute if entity @s[tag=recursion_tnt_child] run{
+            execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+            execute if score @s fuse_time matches 2 run{
+                LOOP(10, i){
+                    summon tnt ~<%Math.cos(i)*2%> ~1 ~<%Math.sin(i)*2%> {Fuse:25,Tags:["recursion_tnt_child_2"]}
+                }
+            }
+        }
+        execute if entity @s[tag=recursion_tnt_child_2] run{
+            execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+            execute if score @s fuse_time matches 2 run{
+                LOOP(10, i){
+                    summon tnt ~<%Math.cos(i)*2%> ~1 ~<%Math.sin(i)*2%> {Fuse:50,Tags:["recursion_tnt_child_3"]}
+                }
+            }
+        }
+        execute if entity @s[tag=recursion_tnt_child_3] run{
+            execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+            execute if score @s fuse_time matches 2 run{
+                LOOP(10, i){
+                    summon tnt ~<%Math.cos(i)*2%> ~1 ~<%Math.sin(i)*2%> {Fuse:50,Tags:["recursion_tnt_child_4"]}
+                }
+            }
+        }
+        execute if entity @s[tag=recursion_tnt_child_4] run{
+            execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+            execute if score @s fuse_time matches 2 run{
+                LOOP(10, i){
+                    summon tnt ~<%Math.cos(i)*2%> ~1 ~<%Math.sin(i)*2%> {Fuse:50,Tags:["recursion_tnt_child_5"]}
+                }
+            }
+        }
+        # execute if entity @s[tag=recursion_tnt_child_5] run{
+        #     execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+        #     execute if score @s fuse_time matches 2 run{
+        #         LOOP(10, i){
+        #             summon tnt ~<%Math.cos(i)*2%> ~1 ~<%Math.sin(i)*2%> {Fuse:50,Tags:["recursion_tnt_child_6"]}
+        #         }
+        #     }
+        # }
+        # execute if entity @s[tag=recursion_tnt_child_6] run{
+        #     execute store result score @s fuse_time run data get entity @e[type=tnt,distance=..0.5,limit=1] Fuse
+        #     execute if score @s fuse_time matches 2 run{
+        #         LOOP(10, i){
+        #             summon tnt ~<%Math.cos(i)*2%> ~1 ~<%Math.sin(i)*2%> {Fuse:50,Tags:["recursion_tnt_child_7"]}
+        #         }
+        #     }
+        # }
+    }
+}
+
+function give_tnt{
+    #*------ TODO: Change Custom model data
+    give @s endermite_spawn_egg{display:{Name:'{"text":"All Effect TNT","color":"#FF0808","italic":false}'},CustomModelData:100011,EntityTag:{Silent:1b,NoAI:1b,Tags:["all_effect","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Fish TNT","italic":false, "color":"red"}'},CustomModelData:100012,EntityTag:{Silent:1b,NoAI:1b,Tags:["fish","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Missile TNT","color":"red","italic":false}'},CustomModelData:100013,EntityTag:{Silent:1b,NoAI:1b,Tags:["missile","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Sponge TNT","color":"yellow","italic":false}'},CustomModelData:100014,EntityTag:{Silent:1b,NoAI:1b,Tags:["sponge","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Butcher TNT","color":"red","italic":false}'},CustomModelData:100015,EntityTag:{Silent:1b,NoAI:1b,Tags:["butcher","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Rich TNT","color":"dark_green","italic":false}'},CustomModelData:100016,EntityTag:{Silent:1b,NoAI:1b,Tags:["rich","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Unspeakable TNT","color":"green","italic":false}'},CustomModelData:100018,EntityTag:{Silent:1b,NoAI:1b,Tags:["unspeakable","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Lightning TNT","color":"#78D6FF","italic":false}'},CustomModelData:100019,EntityTag:{Silent:1b,NoAI:1b,Tags:["lightning","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Hostile TNT","color":"#78D6FF","italic":false}'},CustomModelData:100020,EntityTag:{Silent:1b,NoAI:1b,Tags:["hostile","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Recursion TNT V2","color":"#78D6FF","italic":false}'},CustomModelData:100017,EntityTag:{Silent:1b,NoAI:1b,Tags:["recursion","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"ASWD TNT","color":"#78D6FF","italic":false}'},CustomModelData:100021,EntityTag:{Silent:1b,NoAI:1b,Tags:["noob","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Drill TNT","color":"#78D6FF","italic":false}'},CustomModelData:100022,EntityTag:{Silent:1b,NoAI:1b,Tags:["drill","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Tsunami TNT","color":"blue","italic":false}'},CustomModelData:100023,EntityTag:{Silent:1b,NoAI:1b,Tags:["tsunami","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"World War Z TNT","color":"gray","italic":false}'},CustomModelData:100024,EntityTag:{Silent:1b,NoAI:1b,Tags:["wwz","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Inverted TNT","color":"light_purple","italic":false}'},CustomModelData:100025,EntityTag:{Silent:1b,NoAI:1b,Tags:["inverted","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Hacker TNT","color":"light_purple","italic":false}'},CustomModelData:100027,EntityTag:{Silent:1b,NoAI:1b,Tags:["hacker","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Noob TNT","color":"light_purple","italic":false}'},CustomModelData:100028,EntityTag:{Silent:1b,NoAI:1b,Tags:["noob_2","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Farm TNT","color":"light_purple","italic":false}'},CustomModelData:100029,EntityTag:{Silent:1b,NoAI:1b,Tags:["farm","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Ice TNT","color":"light_purple","italic":false}'},CustomModelData:100030,EntityTag:{Silent:1b,NoAI:1b,Tags:["ice","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Fairy TNT","color":"purple","italic":false}'},CustomModelData:100031,EntityTag:{Silent:1b,NoAI:1b,Tags:["fairy","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Troll TNT","color":"white","italic":false}'},CustomModelData:100032,EntityTag:{Silent:1b,NoAI:1b,Tags:["troll","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"All TNT","color":"light_purple","italic":false}'},CustomModelData:100033,EntityTag:{Silent:1b,NoAI:1b,Tags:["all","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Frog TNT","color":"green","italic":false}'},CustomModelData:100034,EntityTag:{Silent:1b,NoAI:1b,Tags:["frog","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Mutant Zombie TNT","color":"green","italic":false}'},CustomModelData:100035,EntityTag:{Silent:1b,NoAI:1b,Tags:["mutant","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Fake TNT","color":"green","italic":false}'},CustomModelData:100036,EntityTag:{Silent:1b,NoAI:1b,Tags:["fake","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Meteor TNT","color":"green","italic":false}'},CustomModelData:100037,EntityTag:{Silent:1b,NoAI:1b,Tags:["meteor","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+}
+
+#> TNT Command
+function good_effect{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Good Effect TNT","color":"#FF0808","italic":false}'},CustomModelData:100011,EntityTag:{Silent:1b,NoAI:1b,Tags:["all_effect","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Gives all the good effects to the player nearby","color":"green"}
+}
+
+function fish{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Fish TNT","italic":false, "color":"red"}'},CustomModelData:100012,EntityTag:{Silent:1b,NoAI:1b,Tags:["fish","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Raining fishes","color":"green"}
+}
+
+function missile{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Missile TNT","color":"red","italic":false}'},CustomModelData:100013,EntityTag:{Silent:1b,NoAI:1b,Tags:["missile","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Call a airstike where the tnt explodes","color":"green"}
+}
+
+function sponge{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Sponge TNT","color":"yellow","italic":false}'},CustomModelData:100014,EntityTag:{Silent:1b,NoAI:1b,Tags:["sponge","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Clear 32x32x32 cube water near the tnt","color":"green"}
+}
+
+function butcher{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Butcher TNT","color":"red","italic":false}'},CustomModelData:100015,EntityTag:{Silent:1b,NoAI:1b,Tags:["butcher","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"kill all the entites in 70 blocks radius, excluding player","color":"green"}
+}
+
+function rich{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Rich TNT","color":"dark_green","italic":false}'},CustomModelData:100016,EntityTag:{Silent:1b,NoAI:1b,Tags:["rich","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Raining diamond, emeralds!","color":"green"}
+}
+
+function unspeakable{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Unspeakable TNT","color":"green","italic":false}'},CustomModelData:100018,EntityTag:{Silent:1b,NoAI:1b,Tags:["unspeakable","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Spawn alot of unspeakable clones","color":"green"}
+}
+
+function lightning{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Lightning TNT","color":"#78D6FF","italic":false}'},CustomModelData:100019,EntityTag:{Silent:1b,NoAI:1b,Tags:["lightning","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Spawn random lightning near the tnt","color":"green"}
+}
+
+function hostile{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Hostile TNT","color":"#78D6FF","italic":false}'},CustomModelData:100020,EntityTag:{Silent:1b,NoAI:1b,Tags:["hostile","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Spawns many hostile mobs","color":"green"}
+}
+
+function recursion{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Recursion TNT V2","color":"#78D6FF","italic":false}'},CustomModelData:100017,EntityTag:{Silent:1b,NoAI:1b,Tags:["recursion","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Every tnt will spawn more tnt and so forth","color":"green"}
+}
+
+function aswd{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"ASWD TNT","color":"#78D6FF","italic":false}'},CustomModelData:100021,EntityTag:{Silent:1b,NoAI:1b,Tags:["noob","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Spawns a giant ASWD","color":"green"}
+}
+
+function drill{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Drill TNT","color":"#78D6FF","italic":false}'},CustomModelData:100022,EntityTag:{Silent:1b,NoAI:1b,Tags:["drill","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Clear a single block hole beneath the tnt","color":"green"}
+}
+
+function tsunami{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Tsunami TNT","color":"blue","italic":false}'},CustomModelData:100023,EntityTag:{Silent:1b,NoAI:1b,Tags:["tsunami","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Spawns a big cube of water","color":"green"}
+}
+
+function wwz{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"World War Z TNT","color":"gray","italic":false}'},CustomModelData:100024,EntityTag:{Silent:1b,NoAI:1b,Tags:["wwz","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Spawns alot of zombies","color":"green"}
+}
+
+function inverted{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Inverted TNT","color":"light_purple","italic":false}'},CustomModelData:100025,EntityTag:{Silent:1b,NoAI:1b,Tags:["inverted","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Make all the entites inverted, excluding player","color":"green"}
+}
+
+function hacker{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Hacker TNT","color":"light_purple","italic":false}'},CustomModelData:100027,EntityTag:{Silent:1b,NoAI:1b,Tags:["hacker","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Hack you pc and crash it","color":"green"}
+    tellraw @a {"text":"WARNING: It will hack your pc and crash it, be cautious","color":"red"}
+}
+
+function noob{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Noob TNT","color":"light_purple","italic":false}'},CustomModelData:100028,EntityTag:{Silent:1b,NoAI:1b,Tags:["noob_2","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Just a noob TNT like always","color":"green"}
+}
+
+function farm{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Farm TNT","color":"light_purple","italic":false}'},CustomModelData:100029,EntityTag:{Silent:1b,NoAI:1b,Tags:["farm","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Spawns many farm animals","color":"green"}
+}
+
+function ice{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Ice TNT","color":"light_purple","italic":false}'},CustomModelData:100030,EntityTag:{Silent:1b,NoAI:1b,Tags:["ice","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Slow down all the mobs near the tnt, including player","color":"green"}
+}
+
+function fairy{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Fairy TNT","color":"purple","italic":false}'},CustomModelData:100031,EntityTag:{Silent:1b,NoAI:1b,Tags:["fairy","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Spawn bunch of faries, player gets regeneration when near them","color":"green"}
+}
+
+function troll{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Troll TNT","color":"white","italic":false}'},CustomModelData:100032,EntityTag:{Silent:1b,NoAI:1b,Tags:["troll","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Make a big lava pit with a middle platform, and give speed to the player. Hence they can't cross the lava lake and die","color":"green"}
+}
+
+function all{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"All TNT","color":"light_purple","italic":false}'},CustomModelData:100033,EntityTag:{Silent:1b,NoAI:1b,Tags:["all","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Summon all the TNT, excluding some TNTs which will cause lag","color":"green"}
+}
+
+function frog{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Frog TNT","color":"green","italic":false}'},CustomModelData:100034,EntityTag:{Silent:1b,NoAI:1b,Tags:["frog","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Spawns alot of frogs","color":"green"}
+}
+
+function mutant{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Mutant Zombie TNT","color":"green","italic":false}'},CustomModelData:100035,EntityTag:{Silent:1b,NoAI:1b,Tags:["mutant","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Spawn many types of Mutant zombie","color":"green"}
+}
+
+function fake{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Fake TNT","color":"green","italic":false}'},CustomModelData:100036,EntityTag:{Silent:1b,NoAI:1b,Tags:["fake","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @a {"text":"Fake TNT, good for trolling","color":"green"}
+}
+
+function meteor{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Meteor TNT","color":"green","italic":false}'},CustomModelData:100037,EntityTag:{Silent:1b,NoAI:1b,Tags:["meteor","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+}
+function nuke{
+    give @p endermite_spawn_egg{display:{Name:'{"text":"Nuke TNT","italic":false, "color":"red"}'},CustomModelData:100038,EntityTag:{Silent:1b,NoAI:1b,Tags:["nuke","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+    tellraw @p {"text":"\nMake a large blast radius, very large. LAG WARNING!!", "color":"green"}
+}
+
+
+
+#> Misc.
+function secret_tnt{
+    give @s endermite_spawn_egg{display:{Name:'{"text":"Secret TNT","color":"#78D6FF","italic":false}'},CustomModelData:100026,EntityTag:{Silent:1b,NoAI:1b,Tags:["secret","tnt.endermite"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:999999,ShowParticles:0b}]}} 1
+}
+
+function reset_hat{
+    summon item_frame 328 161 223 {Facing:4b,Invulnerable:1b,Invisible:1b,Tags:["hat_if"],Item:{id:"minecraft:carrot_on_a_stick",Count:1b,tag:{display:{Name:'{"text":"Click the button if you see the hat","color":"green"}'},CustomModelData:123321}}}
+
+    setblock 328 160 223 polished_blackstone_button[facing=west]
+}
+function click_hat{
+    kill @e[type=item_frame, tag=hat_if]
+    setblock 328 160 223 air
+    execute as @a at @s run{
+        summon firework_rocket ^1 ^ ^ {LifeTime:20,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Explosions:[{Type:2,Trail:1b,Colors:[I;3691519,16383810,16711680]},{Type:0,Colors:[I;382463,16723676]}]}}}}
+        summon firework_rocket ^-1 ^ ^ {LifeTime:20,FireworksItem:{id:firework_rocket,Count:1,tag:{Fireworks:{Explosions:[{Type:2,Trail:1b,Colors:[I;3691519,16383810,16711680]},{Type:0,Colors:[I;382463,16723676]}]}}}}
+    }
+}
