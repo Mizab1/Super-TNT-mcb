@@ -1,6 +1,6 @@
 #built using mc-build (https://github.com/mc-build/mc-build)
 
-execute as @a at @s run tp @s ~ ~ ~ ~-0.89 ~-0.07
+execute as @a at @s run tp @s ~ ~ ~ ~0.48 ~0.65
 schedule function mtnt.main:__generated__/sequence/1 2t replace
 schedule function mtnt.main:__generated__/sequence/2 4t replace
 schedule function mtnt.main:__generated__/sequence/3 6t replace
