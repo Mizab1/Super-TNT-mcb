@@ -1,5 +1,6 @@
 #built using mc-build (https://github.com/mc-build/mc-build)
 
-execute as @e[type=#minecraft:all_living, tag=!master] at @s run tp @s ~ ~-300 ~
-kill @e[type=armor_stand,tag=tnt.void,distance=..4]
-kill @s
+scoreboard players set #execute LANG_MC_INTERNAL 0
+execute if entity @e[type=tnt,distance=..0.5] run function mtnt.main:__generated__/conditional/14
+scoreboard players set #execute LANG_MC_INTERNAL 0
+execute unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5] run function mtnt.main:__generated__/conditional/15

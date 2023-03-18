@@ -42,3 +42,17 @@
 - teleport TNT
 - void TNT
 
+
+
+----- Revise
+- 1) keep inventory @done
+- 2) put crash sound to the car or skidding sounds @done
+- 3) for the star rain, we need real stars not a charge ball, maybe you can put the Mario star sound while is raining, and add a lot stars and less explosive @done
+- 4) for the earthquake tnt, can you do a crack/rift  in the  floor? i guess that you can clone air blocks from a real rift pasted somewhere, that would be the easier way, with breaking particles blocks @done
+- 5) set gravity time to 2 seconds @done
+- 6) "maybe something is missing from your inventory", that means that not always works? @done
+- 7) disable weather like always @done
+- 8) the skycrapper is ok, but we need the double of height, maybe you can paste it twice @done
+- 9) i think that the word is not cringe, in the ads tnt, should to be die for boring. isn't it? and also can you force his looking at pls @done
+- 10) the teleport tnt has to clone a section of map around the player and put it back somewhere else, that's the idea, an area of like 9x9x5 around him @done
+- /clone ~-4 ~-4 ~-4 ~3 ~3 ~3 ~10 ~ ~-12 replace move

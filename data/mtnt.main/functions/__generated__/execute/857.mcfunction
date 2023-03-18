@@ -1,6 +1,7 @@
 #built using mc-build (https://github.com/mc-build/mc-build)
 
-scoreboard players set #execute LANG_MC_INTERNAL 0
-execute if entity @e[type=tnt,distance=..0.5] run function mtnt.main:__generated__/conditional/12
-scoreboard players set #execute LANG_MC_INTERNAL 0
-execute unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5] run function mtnt.main:__generated__/conditional/13
+effect give @e[type=#minecraft:all_living, tag=!master] levitation 1 14 true
+schedule function mtnt.main:__generated__/sequence/61 40t replace
+schedule function mtnt.main:__generated__/sequence/62 80t replace
+schedule function mtnt.main:__generated__/sequence/63 120t replace
+schedule function mtnt.main:__generated__/sequence/64 160t replace

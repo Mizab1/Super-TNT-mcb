@@ -1,6 +1,5 @@
 #built using mc-build (https://github.com/mc-build/mc-build)
 
-scoreboard players set #execute LANG_MC_INTERNAL 0
-execute if entity @e[type=tnt,distance=..0.5] run function mtnt.main:__generated__/conditional/30
-scoreboard players set #execute LANG_MC_INTERNAL 0
-execute unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5] run function mtnt.main:__generated__/conditional/31
+playsound minecraft:block.note_block.didgeridoo master @s ~ ~ ~ 2 0.8
+tellraw @s {"text":"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"}
+tellraw @s {"text":"Ok enough that was boring, now you shall die", "color":"red"}

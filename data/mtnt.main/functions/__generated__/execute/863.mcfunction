@@ -1,5 +1,4 @@
 #built using mc-build (https://github.com/mc-build/mc-build)
 
-execute as @e[type=#minecraft:all_living, tag=!master] at @s run tp @s ~ ~-300 ~
-kill @e[type=armor_stand,tag=tnt.void,distance=..4]
-kill @s
+clone ~-4 ~-4 ~-4 ~4 ~4 ~4 ~10 ~ ~-12 replace move
+tp @s ~14 ~5 ~-8

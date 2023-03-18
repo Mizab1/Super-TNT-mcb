@@ -1,3 +1,4 @@
 #built using mc-build (https://github.com/mc-build/mc-build)
 
-say lol
+kill @a[tag=on_shader_undo]
+gamerule doImmediateRespawn false

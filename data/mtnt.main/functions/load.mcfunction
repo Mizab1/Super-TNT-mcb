@@ -5,3 +5,6 @@ scoreboard objectives add rng_score dummy
 scoreboard objectives add private dummy
 gamerule universalAnger true
 gamerule showDeathMessages false
+gamerule keepInventory true
+gamerule doWeatherCycle false
+gamerule doDaylightCycle false

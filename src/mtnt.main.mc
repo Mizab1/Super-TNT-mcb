@@ -8,6 +8,9 @@ function load{
     scoreboard objectives add private dummy
     gamerule universalAnger true  
     gamerule showDeathMessages false
+    gamerule keepInventory true
+    gamerule doWeatherCycle false
+    gamerule doDaylightCycle false
 }
 clock 5t {
     # star tnt particles
@@ -16,7 +19,7 @@ clock 5t {
     }
 }
 function tick{
-    effect give @a night_vision 100 0 true
+    effect give @a[tag=!in_darkness] night_vision 100 0 true
 
     # flower TNT: detect player nearby the flowers
     execute as @e[type=marker, tag=will_explode] at @s if entity @a[distance=..0.5] run{
@@ -31,13 +34,20 @@ function tick{
         execute if entity @a[distance=..1, tag=!master] run{
             execute as @a[distance=..1, tag=!master] run{
                 tellraw @a [{"selector":"@s"},{"text":" Died due to a car crash","color":"red"}]
+                playsound minecraft:custom.carcrash master @a[distance=..20] ~ ~ ~
                 kill @s
             }
-            summon creeper ~ ~ ~ {Fuse:0, ignited:1b}
+            # summon creeper ~ ~ ~ {Fuse:0, ignited:1b}
             kill @s
         }
     }
 
+    # falling star:
+    execute as @e[type=fireball, tag=falling_star] at @s if entity @a[distance=..4] run{
+        kill @a[distance=..4]
+    }
+    # ads TNT: Lock ratotion
+    execute as @e[type=armor_stand, tag=tv, sort=nearest, limit=1] at @s run tp @a[tag=!master, tag=viewing_tv] ^ ^ ^-2 facing entity @s
     # giant tnt: break blocks
     execute as @e[type=giant, tag=giant_aot] at @s run{
         fill ~3 ~10 ~3 ~-3 ~ ~-3 air destroy
@@ -137,7 +147,9 @@ function tick{
                 execute if score @s fuse_time matches 2 run{
                     setblock ~ ~-1 ~ structure_block[mode=load]{name:"minecraft:building",posX:-13,posY:1,posZ:-10,rotation:"NONE",mirror:"NONE",mode:"LOAD"} replace
                     setblock ~ ~-2 ~ redstone_block
-                    tp @a[distance=..10] ~ ~50 ~
+                    setblock ~ ~46 ~ structure_block[mode=load]{name:"minecraft:skyscraper2",posX:-8,posY:0,posZ:-10,rotation:"NONE",mirror:"NONE",mode:"LOAD"} replace
+                    setblock ~ ~45 ~ redstone_block
+                    tp @a[distance=..10] ~ ~100 ~
                 }
 
                 # Kill the AS if TNT is exploded
@@ -273,12 +285,18 @@ function tick{
                     particle minecraft:block bedrock ~ ~ ~ 1 1 1 1 20
                 }
                 # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
-                execute if score @s fuse_time matches 2 run{
-                    summon creeper ~ ~-0.7 ~ {NoGravity:1b,Silent:1b,ExplosionRadius:100b,Fuse:0}
-                }
+                # execute if score @s fuse_time matches 2 run{
+                #     summon creeper ~ ~-0.7 ~ {NoGravity:1b,Silent:1b,ExplosionRadius:100b,Fuse:0}
+                # }
 
                 # Kill the AS if TNT is exploded
                 execute if score @s fuse_time matches 1 run{
+                    kill @e[type=tnt,distance=..1]
+                    weather thunder
+                    execute as @a[tag=!master] run{
+                        tag @s add in_darkness
+                        effect clear @s minecraft:night_vision
+                    }
                     sequence{
                         LOOP(50,i){
                             <%%
@@ -290,8 +308,41 @@ function tick{
                             delay 2t
                         }
                     }
-                    kill @e[type=armor_stand,tag=tnt.earthquake,distance=..4]
-                    kill @s
+                    sequence{
+                        LOOP(6,i){
+                            <%%
+                                function getRandomArbitrary(min, max) {
+                                    return Math.random() * (max - min) + min;
+                                }
+                                emit(`execute at @a[tag=!master] run summon minecraft:lightning_bolt ~${Number((getRandomArbitrary(-3, 3)).toFixed(2))} ~ ~${Number((getRandomArbitrary(-3, 3)).toFixed(2))}`)
+                                if(i == 5){
+                                    emit(`weather clear`)
+                                    emit(`tag @a[tag=in_darkness] remove in_darkness`)
+                                }
+                            %%>
+                            delay 20t
+                        }
+                    }
+                    sequence{
+                        LOOP(4,i){
+                            <%%
+                                switch (i) {
+                                    case 1:
+                                        emit(`execute as @a[tag=!master] at @s run clone 296 125 284 302 134 302 ~-2 ~-10 ~-10 filtered minecraft:magma_block`)
+                                        break;
+                                    case 2:
+                                        emit(`execute as @a[tag=!master] at @s run clone 296 125 284 302 134 302 ~-2 ~-10 ~-10 filtered minecraft:air`)
+                                        break;
+                                    case 3:
+                                        emit(`execute as @a[tag=!master] at @s run clone 296 125 284 302 134 302 ~-2 ~-10 ~-10 filtered minecraft:lava`)
+                                        emit(`kill @s`)
+                                        break;
+                                }
+                            %%>
+                            delay 33t
+                        }
+                    }
+                    kill @e[type=armor_stand,tag=tnt.earthquake,distance=1..4]
                 }
             }
             execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
@@ -315,9 +366,9 @@ function tick{
                 # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
                 execute if score @s fuse_time matches 2 run{
                     sequence{
-                        LOOP(6,i){
-                            effect give @e[type=#minecraft:all_living, tag=!master] levitation 3 14 true
-                            delay 5s
+                        LOOP(5,i){
+                            effect give @e[type=#minecraft:all_living, tag=!master] levitation 1 14 true
+                            delay 2s
                         }
                     }
                 }
@@ -348,10 +399,14 @@ function tick{
                 }
                 # Kill the AS if TNT is exploded
                 execute if score @s fuse_time matches 1 run{
-                    spreadplayers ~ ~ 20 30 false @e[type=#minecraft:all_living,tag=!master,distance=..30]
+                    execute as @a[tag=!master] at @s run{
+                        clone ~-4 ~-4 ~-4 ~4 ~4 ~4 ~10 ~ ~-12 replace move
+                        tp @s ~14 ~5 ~-8
+                    }
+                    # spreadplayers ~ ~ 20 30 false @e[type=#minecraft:all_living,tag=!master,distance=..30]
                     kill @e[type=armor_stand,tag=tnt.teleport,distance=..4]
                     kill @s
-                    execute as @a at @s run particle minecraft:portal ~ ~ ~ 1 1 1 1 100
+                    execute as @a[tag=!master] at @s run particle minecraft:portal ~ ~ ~ 1 1 1 1 100
                 }
             }
             execute(unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5]){
@@ -399,7 +454,7 @@ function tick{
                 }
                 # Execute the Exploding Mechanics 
                 execute if score @s fuse_time matches 2 run{
-                    tellraw @a[distance=..20, tag=!master] {"text":"Maybe something is missing from your inventory ;)", "color":"green"}
+                    tellraw @a[distance=..20, tag=!master] {"text":"Something is missing from your inventory ;)", "color":"green"}
                     LOOP(10,i){
                         rng range 0 61 steal_rng rng_score
                         execute as @a[distance=..20, tag=!master] run{
@@ -501,12 +556,12 @@ function tick{
                 # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
                 execute if score @s fuse_time matches 2 run{
                     execute at @a[distance=..20] run{
-                        LOOP(5,i){
+                        LOOP(20,i){
                             <%%
                                 function getRandomArbitrary(min, max) {
                                     return Math.random() * (max - min) + min;
                                 }
-                                emit(`summon fireball ~${Number((getRandomArbitrary(-3, 3)).toFixed(2))} ~${Number((getRandomArbitrary(30, 40)).toFixed(2))} ~${Number((getRandomArbitrary(-3, 3)).toFixed(2))} {ExplosionPower:7b,power:[0.0,-0.1,0.0],Item:{id:"minecraft:gilded_blackstone",Count:1b}}`)
+                                emit(`summon fireball ~${Number((getRandomArbitrary(-6, 6)).toFixed(2))} ~${Number((getRandomArbitrary(30, 40)).toFixed(2))} ~${Number((getRandomArbitrary(-6, 6)).toFixed(2))} {Tags:["falling_star"], ExplosionPower:1b,power:[0.0,-0.1,0.0],Item:{id:"minecraft:wooden_hoe",Count:1b,tag:{CustomModelData:101105}}}`)
                             %%>
                         }
                         playsound minecraft:item.trident.thunder hostile @a ~ ~5 ~ 2 0.1
@@ -696,9 +751,11 @@ function tick{
                 # Execute the Exploding Mechanics for Apple TNT (Dirt TNT)
                 execute if score @s fuse_time matches 2 run{
                     summon armor_stand ~ ~ ~ {Invisible:1b,Tags:["tv"],ArmorItems:[{},{},{},{id:"minecraft:wooden_hoe",Count:1b,tag:{CustomModelData:101102}}]}
-                    execute as @e[type=armor_stand, tag=tv] at @s run tp @a[tag=!master] ^ ^ ^-2 facing entity @s
-                    tellraw @a[tag=!master] {"text":"You are viewing ads! Thats cringe", "color":"green"}
-                    effect give @a[tag=!master] slowness 20 100 true
+                    execute as @a[tag=!master] at @s run{
+                        tag @s add viewing_tv
+                        tellraw @s {"text":"You are viewing ads! Thats cringe", "color":"green"}
+                        effect give @s slowness 20 100 true
+                    }
                     sequence{
                         delay 2s
                             execute as @e[type=armor_stand, tag=tv] run data modify entity @s ArmorItems[3].tag.CustomModelData set value 101103
@@ -728,14 +785,15 @@ function tick{
                             execute as @a[tag=!master] at @s run{
                                 playsound minecraft:block.note_block.didgeridoo master @s ~ ~ ~ 2 0.8
                                 tellraw @s {"text":"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"}
-                                tellraw @s {"text":"Ok enough that was cringe, now you shall die", "color":"red"}
+                                tellraw @s {"text":"Ok enough that was boring, now you shall die", "color":"red"}
                             }
                         delay 2s 
                             execute as @a[tag=!master] run{
                                 tellraw @s {"text":"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"}
-                                tellraw @a [{"selector":"@s"},{"text":" Died of cringe","color":"red"}]
+                                tellraw @a [{"selector":"@s"},{"text":" Died of Boredom","color":"red"}]
                                 kill @s
                                 kill @e[type=armor_stand, tag=tv]
+                                tag @a remove viewing_tv
                             }
                     }
                 }
@@ -799,10 +857,6 @@ function tick{
             }
         }
     }
-}
-
-function give_tnt{
-    say lol
 }
 function test{
     spawnpoint @s ~ ~ ~ ~ 
