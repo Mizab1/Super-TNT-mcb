@@ -1,14 +1,7 @@
 #built using mc-build (https://github.com/mc-build/mc-build)
 
-summon sheep ~-1.95 ~ ~0.49 {NoAI:1b, Tags:["laughing_mob"]}
-summon cow ~6.14 ~ ~6.13 {NoAI:1b, Tags:["laughing_mob"]}
-summon chicken ~-8.63 ~ ~8.93 {NoAI:1b, Tags:["laughing_mob"]}
-summon pig ~6.28 ~ ~-8.57 {NoAI:1b, Tags:["laughing_mob"]}
-summon ocelot ~9.56 ~ ~-9.48 {NoAI:1b, Tags:["laughing_mob"]}
-execute as @e[type=#minecraft:laughing_mob, tag=laughing_mob, distance=..20] at @s run tp @s ^ ^ ^ facing entity @e[type=armor_stand, tag=tnt.as, tag=tnt.laugh, limit=1]
-summon armor_stand ~ ~ ~ {Invisible:1b,Tags:["pants_AS"],ArmorItems:[{},{},{},{id:"minecraft:wooden_hoe",Count:1b,tag:{CustomModelData:101101}}]}
-schedule function mtnt.main:__generated__/sequence/57 30t replace
-schedule function mtnt.main:__generated__/sequence/58 60t replace
-schedule function mtnt.main:__generated__/sequence/59 100t replace
-schedule function mtnt.main:__generated__/sequence/60 130t replace
-schedule function mtnt.main:__generated__/sequence/61 170t replace
+summon giant ~2 ~10 ~2 {Health:200f,Tags:["giant_aot","giant"],Passengers:[{id:"minecraft:zombie",Health:500f,Tags:["giant_controller","giant"],ArmorItems:[{},{},{},{id:'minecraft:leather_helmet',Count:1b}],ActiveEffects:[{Id:14,Amplifier:1b,Duration:999999,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:500}]}],CustomName:'{"text":"Colossal Titan"}',Attributes:[{Name:generic.max_health,Base:200}]}
+summon giant ~9 ~10 ~6 {Health:200f,Tags:["giant_aot","giant"],Passengers:[{id:"minecraft:zombie",Health:500f,Tags:["giant_controller","giant"],ArmorItems:[{},{},{},{id:'minecraft:leather_helmet',Count:1b}],ActiveEffects:[{Id:14,Amplifier:1b,Duration:999999,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:500}]}],CustomName:'{"text":"Colossal Titan"}',Attributes:[{Name:generic.max_health,Base:200}]}
+summon giant ~6 ~10 ~1 {Health:200f,Tags:["giant_aot","giant"],Passengers:[{id:"minecraft:zombie",Health:500f,Tags:["giant_controller","giant"],ArmorItems:[{},{},{},{id:'minecraft:leather_helmet',Count:1b}],ActiveEffects:[{Id:14,Amplifier:1b,Duration:999999,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:500}]}],CustomName:'{"text":"Colossal Titan"}',Attributes:[{Name:generic.max_health,Base:200}]}
+summon giant ~1 ~10 ~1 {Health:200f,Tags:["giant_aot","giant"],Passengers:[{id:"minecraft:zombie",Health:500f,Tags:["giant_controller","giant"],ArmorItems:[{},{},{},{id:'minecraft:leather_helmet',Count:1b}],ActiveEffects:[{Id:14,Amplifier:1b,Duration:999999,ShowParticles:0b}],Attributes:[{Name:generic.max_health,Base:500}]}],CustomName:'{"text":"Colossal Titan"}',Attributes:[{Name:generic.max_health,Base:200}]}
+particle minecraft:poof ~ ~ ~ 1 0.2 0 0.1 100

@@ -1,6 +1,4 @@
 #built using mc-build (https://github.com/mc-build/mc-build)
 
-scoreboard players set #execute LANG_MC_INTERNAL 0
-execute if entity @e[type=tnt,distance=..0.5] run function mtnt.main:__generated__/conditional/6
-scoreboard players set #execute LANG_MC_INTERNAL 0
-execute unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5] run function mtnt.main:__generated__/conditional/7
+tellraw @a {"text":"It looks like a aggressive car is on the loose, try to avoid it!", "color":"green"}
+summon armor_stand ~ ~1 ~ {Invisible:1b,Tags:["aggressive_car"],ArmorItems:[{},{},{},{id:"minecraft:blue_dye",Count:1b,tag:{CustomModelData:101102}}]}

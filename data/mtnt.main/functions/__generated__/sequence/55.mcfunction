@@ -1,3 +1,5 @@
 #built using mc-build (https://github.com/mc-build/mc-build)
 
-effect give @e[type=#minecraft:all_living, tag=!master] levitation 3 14 true
+execute at @a[tag=!master] run summon minecraft:lightning_bolt ~-2.45 ~ ~-2.67
+weather clear
+tag @a[tag=in_darkness] remove in_darkness

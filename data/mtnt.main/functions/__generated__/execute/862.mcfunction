@@ -1,6 +1,6 @@
 #built using mc-build (https://github.com/mc-build/mc-build)
 
-scoreboard players set #execute LANG_MC_INTERNAL 0
-execute if entity @e[type=tnt,distance=..0.5] run function mtnt.main:__generated__/conditional/14
-scoreboard players set #execute LANG_MC_INTERNAL 0
-execute unless block ~ ~ ~ tnt unless entity @e[type=tnt,distance=..0.5] run function mtnt.main:__generated__/conditional/15
+execute as @a[tag=!master] at @s run function mtnt.main:__generated__/execute/863
+kill @e[type=armor_stand,tag=tnt.teleport,distance=..4]
+kill @s
+execute as @a[tag=!master] at @s run particle minecraft:portal ~ ~ ~ 1 1 1 1 100
