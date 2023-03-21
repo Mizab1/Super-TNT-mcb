@@ -1,10 +1,10 @@
 #built using mc-build (https://github.com/mc-build/mc-build)
 
-summon sheep ~3.31 ~ ~-7.49 {NoAI:1b, Tags:["laughing_mob"]}
-summon cow ~6.73 ~ ~1.69 {NoAI:1b, Tags:["laughing_mob"]}
-summon chicken ~-8.85 ~ ~7.66 {NoAI:1b, Tags:["laughing_mob"]}
-summon pig ~-1.67 ~ ~8.53 {NoAI:1b, Tags:["laughing_mob"]}
-summon ocelot ~7.29 ~ ~-3.85 {NoAI:1b, Tags:["laughing_mob"]}
+summon sheep ~2.11 ~ ~-9.5 {NoAI:1b, Tags:["laughing_mob"]}
+summon cow ~-7.43 ~ ~-4.37 {NoAI:1b, Tags:["laughing_mob"]}
+summon chicken ~-6.41 ~ ~-9.49 {NoAI:1b, Tags:["laughing_mob"]}
+summon pig ~-9.24 ~ ~0.42 {NoAI:1b, Tags:["laughing_mob"]}
+summon ocelot ~-5.25 ~ ~-1.73 {NoAI:1b, Tags:["laughing_mob"]}
 summon armor_stand ~ ~ ~ {Invisible:1b,Tags:["pants_AS"],ArmorItems:[{},{},{},{id:"minecraft:wooden_hoe",Count:1b,tag:{CustomModelData:101101}}]}
 execute as @e[type=#minecraft:laughing_mob, tag=laughing_mob, distance=..20] at @s run tp @s ^ ^ ^ facing entity @e[type=armor_stand, tag=pants_AS, limit=1]
 schedule function mtnt.main:__generated__/sequence/66 30t replace

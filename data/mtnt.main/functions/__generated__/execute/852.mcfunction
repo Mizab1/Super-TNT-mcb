@@ -3,7 +3,7 @@
 kill @e[type=tnt,distance=..1]
 weather thunder
 execute as @a[tag=!master] run function mtnt.main:__generated__/execute/853
-execute as @a at @s run tp @s ~ ~ ~ ~0.31 ~0.33
+execute as @a at @s run tp @s ~ ~ ~ ~0.91 ~-0.91
 schedule function mtnt.main:__generated__/sequence/1 2t replace
 schedule function mtnt.main:__generated__/sequence/2 4t replace
 schedule function mtnt.main:__generated__/sequence/3 6t replace
@@ -53,7 +53,7 @@ schedule function mtnt.main:__generated__/sequence/46 92t replace
 schedule function mtnt.main:__generated__/sequence/47 94t replace
 schedule function mtnt.main:__generated__/sequence/48 96t replace
 schedule function mtnt.main:__generated__/sequence/49 98t replace
-execute at @a[tag=!master] run summon minecraft:lightning_bolt ~0.7 ~ ~-1.6
+execute at @a[tag=!master] run summon minecraft:lightning_bolt ~2.76 ~ ~-2.04
 schedule function mtnt.main:__generated__/sequence/51 20t replace
 schedule function mtnt.main:__generated__/sequence/52 40t replace
 schedule function mtnt.main:__generated__/sequence/53 60t replace

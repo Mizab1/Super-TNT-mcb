@@ -1,3 +1,3 @@
 #built using mc-build (https://github.com/mc-build/mc-build)
 
-execute at @a[tag=!master] run summon minecraft:lightning_bolt ~-0.49 ~ ~1.49
+execute at @a[tag=!master] run summon minecraft:lightning_bolt ~-1.66 ~ ~-1.66
